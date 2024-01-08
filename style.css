@@ -1,24 +1,46 @@
+body{
+  background: #7656d6;
+}
 .container {
   position: relative;
   width: 80%;
   margin: 0 auto;
   overflow: hidden;
+    /* new property added */
+  margin-top: 115px;
 }
 
 .slider {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+
+  /* new property added */
+  min-width: 100%;
+  max-height: 600px;
 }
+
+.slider .overlay-mask{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.5s ease-in-out;
+  z-index: auto;
+} 
 
 .slider .slide {
   min-width: 100%;
   text-align: center;
   box-sizing: border-box;
+  position: relative;
 }
 
-.slider.slide img {
+.slider .slide img {  /* There werer some error */
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -26,9 +48,83 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 40px;
+  color: #fff;
   padding: 10px;
   cursor: pointer;
+}
+
+/* new css added */
+
+.slide_info{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  width: 730px;
+  padding-top: 167px;
+}
+.slide_info h1{
+  font-size: 54px;
+}
+.slide_info p{
+  font-size: 20px;
+}
+/* Basic styling for the "Read More" button */
+.slide_info a.read-more {
+  display: inline-block;
+  padding: 16px 33px;
+  background-color: #ff8686;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Hover effect for the button */
+a.read-more:hover {
+  background-color: #ff8686c0;
+}
+
+
+.controller svg path{
+  fill: #FFCF47;
+  transition: fill 0.3s; 
+}
+
+.controller:hover svg path{
+  fill: #ffcf4796;
+}
+
+.controllers .dots{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.controllers .dots .dot {
+  width: 20px;
+  height: 20px;
+  background: #FFCF47;
+  border: 2px solid #FFCF47;
+  border-radius: 50%;
+  margin: 0 10px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.controllers .dots .dot.active {
+  background: #000;
 }
 
 .left {
@@ -37,4 +133,38 @@
 
 .right {
   right: 10px;
+}
+
+/* responsive positioning for small screen */
+
+@media screen and (max-width: 768px) {
+  .controller.left svg, .controller.right svg{
+    width: 30px;
+    height: 30px;
+  }
+  .controller.left{
+   left:-5px;
+  }
+  .controller.right{
+    right:-5px;
+  }
+  .slide_info{
+    width: 95%;
+    padding-top: 18px;
+  }
+  .slide_info h1 {
+    font-size: 20px;
+  }
+  .slide_info p{
+    font-size: 10px;
+  }
+  .slide_info a.read-more {
+    padding: 8px 12px;
+    font-size: 8px;
+  }
+  .controllers .dots .dot{
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+  }
 }
